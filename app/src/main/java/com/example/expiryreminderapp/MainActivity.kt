@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar!!.hide()
+
         var Email_id = findViewById(R.id.email_id) as EditText
         var Password = findViewById(R.id.password) as EditText
         var btn_login = findViewById(R.id.login_Button) as Button

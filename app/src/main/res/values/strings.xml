@@ -3,4 +3,7 @@
     <string name="login_textviewtittle">LOGIN</string>
     <string name="new_user_sign_up">NEW USER? SIGN UP!</string>
     <string name="login">Login</string>
+    <string name="submit">fab_string</string>
+    <string name="ExpiryReminder">Expiry Reminder</string>
+
 </resources>

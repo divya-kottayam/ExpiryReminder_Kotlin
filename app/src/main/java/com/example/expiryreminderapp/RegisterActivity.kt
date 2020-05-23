@@ -12,7 +12,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-
+        supportActionBar!!.hide()
 
         register_Button.setOnClickListener {
 
