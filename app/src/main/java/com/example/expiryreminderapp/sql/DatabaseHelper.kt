@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.expiryreminderapp.modal.Product
 import com.example.expiryreminderapp.modal.User
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -13,11 +14,18 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USER_NAME + " TEXT,"
             + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_PASSWORD + " TEXT" + ")")
 
+    private val CREATE_PRODUCT_TABLE = ("CREATE TABLE " + TABLE_PRODUCT + "("
+            + COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_PRODUCT_NAME + " TEXT,"
+            + COLUMN_PRODUCT_EXPDATE + " INTEGER," + COLUMN_PRODUCT_CATEGORY + " TEXT,"
+            + COLUMN_REMINDER_INTERVEL+"TEXT,"+")")
+
     // drop table sql query
     private val DROP_USER_TABLE = "DROP TABLE IF EXISTS $TABLE_USER"
+    private val DROP_PRODUCT_TABLE = "DROP TABLE IF EXISTS $TABLE_PRODUCT"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_USER_TABLE)
+        db.execSQL(CREATE_PRODUCT_TABLE)
     }
 
 
@@ -25,6 +33,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         //Drop User Table if exist
         db.execSQL(DROP_USER_TABLE)
+        db.execSQL(DROP_PRODUCT_TABLE)
 
         // Create tables again
         onCreate(db)
@@ -90,6 +99,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
     }
 
+
+
+    fun addProduct(product: Product) {
+        val db = this.writableDatabase
+
+        val values = ContentValues()
+        values.put(COLUMN_PRODUCT_NAME, product.productname)
+        values.put(COLUMN_PRODUCT_EXPDATE, product.expirydate)
+        values.put(COLUMN_PRODUCT_CATEGORY, product.category)
+        values.put(COLUMN_REMINDER_INTERVEL, product.reminder)
+
+        // Inserting Row
+        db.insert(TABLE_USER, null, values)
+        db.close()
+    }
+
     /**
      * This method to update user record
      *
@@ -109,6 +134,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
     }
 
+    fun updateProduct(product: Product) {
+        val db = this.writableDatabase
+
+        val values = ContentValues()
+        values.put(COLUMN_PRODUCT_NAME, product.productname)
+        values.put(COLUMN_PRODUCT_EXPDATE, product.expirydate)
+        values.put(COLUMN_PRODUCT_CATEGORY, product.category)
+        values.put(COLUMN_REMINDER_INTERVEL, product.reminder)
+
+        // updating row
+        db.update(
+            TABLE_PRODUCT, values, "$COLUMN_PRODUCT_ID = ?",
+            arrayOf(product.id.toString()))
+        db.close()
+    }
+
     /**
      * This method is to delete user record
      *
@@ -120,6 +161,18 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         // delete user record by id
         db.delete(TABLE_USER, "$COLUMN_USER_ID = ?",
             arrayOf(user.id.toString()))
+        db.close()
+
+
+    }
+
+    fun deleteProduct(product: Product) {
+
+        val db = this.writableDatabase
+        // delete user record by id
+        db.delete(
+            TABLE_PRODUCT, "$COLUMN_PRODUCT_ID = ?",
+            arrayOf(product.id.toString()))
         db.close()
 
 
@@ -230,5 +283,14 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private val COLUMN_USER_NAME = "user_name"
         private val COLUMN_USER_EMAIL = "user_email"
         private val COLUMN_USER_PASSWORD = "user_password"
+
+
+        private val TABLE_PRODUCT ="product"
+
+        private val COLUMN_PRODUCT_ID ="product_id"
+        private val COLUMN_PRODUCT_NAME = "product_name"
+        private val COLUMN_PRODUCT_EXPDATE ="product_expdate"
+        private val COLUMN_PRODUCT_CATEGORY = "product_category"
+        private val COLUMN_REMINDER_INTERVEL="Reminder_intervel"
     }
 }

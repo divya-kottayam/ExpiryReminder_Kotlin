@@ -44,7 +44,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/namelayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -57,16 +57,17 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
-                android:gravity="center"
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#F1EAEA"></com.google.android.material.textfield.TextInputEditText>
+                android:textColorHint="#F1EAEA"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emaillayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -79,16 +80,16 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
-                android:gravity="center"
                 android:hint="Email Id"
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#F1EAEA"></com.google.android.material.textfield.TextInputEditText>
+                android:textColorHint="#F1EAEA"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordlayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -100,16 +101,16 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
-                android:gravity="center"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#F1EAEA"></com.google.android.material.textfield.TextInputEditText>
+                android:textColorHint="#F1EAEA"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confpasswordlayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confpassword"
@@ -121,11 +122,11 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="50dp"
                 android:ems="10"
-                android:gravity="center"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#F1EAEA"></com.google.android.material.textfield.TextInputEditText>
+                android:textColorHint="#F1EAEA"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register_Button"

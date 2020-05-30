@@ -7,9 +7,9 @@
     tools:context=".AddproductActivity">
 
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="1dp"
@@ -18,81 +18,90 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <EditText
-                android:id="@+id/productname"
-                android:layout_width="300dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/productnamelayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/product_name"
-                android:inputType="textPersonName"
-                android:padding="@dimen/padding"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginBottom="16dp">
 
-            <EditText
-                android:id="@+id/Expirydate"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="@string/expiry_date"
-                android:inputType="date"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productname" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Expirydate">
-
-                <TextView
-                    android:id="@+id/category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Spinner
-                    android:id="@+id/category_spinner"
-                    android:layout_width="200dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productname"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/product_name"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/padding" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/productexplayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp">
 
-            <TextView
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/expirydate"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/expiry_date"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Category">
+
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/category_spinner"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></androidx.appcompat.widget.AppCompatSpinner>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/remind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +115,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            </androidx.appcompat.widget.AppCompatTextView>
 
             <RadioGroup
                 android:id="@+id/radio_group"
@@ -122,41 +132,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/remind">
 
-                <RadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/hour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/layout_margin"
                     android:onClick="radio_button_click"
-                    android:text="1 Hour Before" />
+                    android:text="1 Hour Before">
 
-                <RadioButton
+                </androidx.appcompat.widget.AppCompatRadioButton>
+
+
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/layout_margin"
                     android:onClick="radio_button_click"
-                    android:text="1 Day before" />
+                    android:text="1 Day before">
 
-                <RadioButton
+                </androidx.appcompat.widget.AppCompatRadioButton>
+
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/weak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/layout_margin"
                     android:onClick="radio_button_click"
-                    android:text="1 Weak Before" />
+                    android:text="1 Weak Before"></androidx.appcompat.widget.AppCompatRadioButton>
 
-                <RadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/month"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/layout_margin"
-                    android:text="1 Month Before" />
+                    android:text="1 Month Before"></androidx.appcompat.widget.AppCompatRadioButton>
             </RadioGroup>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addproduct"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
@@ -164,15 +179,14 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="46dp"
+                android:background="#141F5C"
                 android:text="Add Product"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radio_group">
+                app:layout_constraintTop_toBottomOf="@+id/radio_group"></androidx.appcompat.widget.AppCompatButton>
 
-            </Button>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
