@@ -6,12 +6,7 @@
 
     <group android:checkableBehavior="single" >
 
-        <item
-            android:id="@+id/menu_Expiry_history"
-            android:orderInCategory="1"
-            app:showAsAction="never"
-            android:title="@string/History"
-            />
+        
         <item
             android:id="@+id/menu_Logout"
             android:orderInCategory="2"

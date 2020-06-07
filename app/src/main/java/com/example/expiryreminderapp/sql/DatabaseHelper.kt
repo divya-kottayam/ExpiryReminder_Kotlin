@@ -16,8 +16,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     private val CREATE_PRODUCT_TABLE = ("CREATE TABLE " + TABLE_PRODUCT + "("
             + COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_PRODUCT_NAME + " TEXT,"
-            + COLUMN_PRODUCT_EXPDATE + " INTEGER," + COLUMN_PRODUCT_CATEGORY + " TEXT,"
-            + COLUMN_REMINDER_INTERVEL+"TEXT,"+")")
+            + COLUMN_PRODUCT_EXPDATE + " TEXT," + COLUMN_PRODUCT_CATEGORY + " TEXT,"
+            + COLUMN_REMINDER_INTERVEL + " TEXT" +")")
 
     // drop table sql query
     private val DROP_USER_TABLE = "DROP TABLE IF EXISTS $TABLE_USER"
@@ -46,39 +46,40 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
      * @return list
      */
 
-//    fun getAllUser(): List {
-//
-//        // array of columns to fetch
-//        val columns = arrayOf(COLUMN_USER_ID, COLUMN_USER_EMAIL, COLUMN_USER_NAME, COLUMN_USER_PASSWORD)
-//
-//        // sorting orders
-//        val sortOrder = "$COLUMN_USER_NAME ASC"
-//        val userList = ArrayList()
-//
-//        val db = this.readableDatabase
-//
-//        // query the user table
-//        val cursor = db.query(TABLE_USER, //Table to query
-//            columns,            //columns to return
-//            null,     //columns for the WHERE clause
-//            null,  //The values for the WHERE clause
-//            null,      //group the rows
-//            null,       //filter by row groups
-//            sortOrder)         //The sort order
-//        if (cursor.moveToFirst()) {
-//            do {
-//                val user = User(id = cursor.getString(cursor.getColumnIndex(COLUMN_USER_ID)).toInt(),
-//                    name = cursor.getString(cursor.getColumnIndex(COLUMN_USER_NAME)),
-//                    email = cursor.getString(cursor.getColumnIndex(COLUMN_USER_EMAIL)),
-//                    password = cursor.getString(cursor.getColumnIndex(COLUMN_USER_PASSWORD)))
-//
-//                userList.add(user)
-//            } while (cursor.moveToNext())
-//        }
-//        cursor.close()
-//        db.close()
-//        return userList
-//    }
+    fun getAllProduct(): List<Product> {
+
+        // array of columns to fetch
+        val columns = arrayOf(COLUMN_PRODUCT_ID, COLUMN_PRODUCT_NAME, COLUMN_PRODUCT_EXPDATE, COLUMN_PRODUCT_CATEGORY, COLUMN_REMINDER_INTERVEL)
+
+        // sorting orders
+        val sortOrder = "$COLUMN_PRODUCT_NAME ASC"
+        val productlist = ArrayList<Product>()
+
+        val db = this.readableDatabase
+
+        // query the user table
+        val cursor= db.query(TABLE_PRODUCT, //Table to query
+            columns,            //columns to return
+            null,     //columns for the WHERE clause
+            null,  //The values for the WHERE clause
+            null,      //group the rows
+            null,       //filter by row groups
+            sortOrder)         //The sort order
+        if (cursor.moveToFirst()) {
+            do {
+                val product = Product(id = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_ID)).toInt(),
+                    productname = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_NAME)),
+                    expirydate = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_EXPDATE)),
+                    category = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_CATEGORY)),
+                    reminder = cursor.getString(cursor.getColumnIndex(COLUMN_REMINDER_INTERVEL)))
+
+                productlist.add(product)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return productlist
+    }
 
 
     /**
@@ -111,7 +112,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         values.put(COLUMN_REMINDER_INTERVEL, product.reminder)
 
         // Inserting Row
-        db.insert(TABLE_USER, null, values)
+        db.insert(TABLE_PRODUCT, null, values)
         db.close()
     }
 
@@ -291,6 +292,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private val COLUMN_PRODUCT_NAME = "product_name"
         private val COLUMN_PRODUCT_EXPDATE ="product_expdate"
         private val COLUMN_PRODUCT_CATEGORY = "product_category"
-        private val COLUMN_REMINDER_INTERVEL="Reminder_intervel"
+        private val COLUMN_REMINDER_INTERVEL="reminder_intervel"
     }
 }

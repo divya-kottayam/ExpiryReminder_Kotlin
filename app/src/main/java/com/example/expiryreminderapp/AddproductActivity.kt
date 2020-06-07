@@ -39,6 +39,8 @@ class AddproductActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     private lateinit var inputValidation: InputValidation
     private lateinit var databaseHelper: DatabaseHelper
 
+
+
     var products =
         arrayOf("Select", "Food", "Drugs", "Identy Card", "Licence", "Debit Card", "Credit Card")
 
@@ -48,6 +50,22 @@ class AddproductActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addproduct)
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        expirydate.setOnClickListener {
+
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                // Display Selected date in TextView
+                expirydate.setText("" + dayOfMonth + "/ " + month + "/  " + year)
+            }, year, month, day)
+            dpd.show()
+
+        }
+
 
 
         // initializing the views
@@ -91,7 +109,7 @@ class AddproductActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     }
 
     fun radio_button_click(view: View) {
-        // Get the clicked radio button instance
+
         val radio: AppCompatRadioButton = findViewById(radio_group.checkedRadioButtonId)
 //        Toast.makeText(applicationContext,"On click : ${radio.text}",
 //            Toast.LENGTH_SHORT).show()
@@ -102,7 +120,6 @@ class AddproductActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         ScrollView = findViewById(R.id.scrollview) as NestedScrollView
         Productnamelayout = findViewById(R.id.productnamelayout) as TextInputLayout
         Expdatelayout = findViewById(R.id.productexplayout) as TextInputLayout
-
 
         Productname = findViewById(R.id.productname) as TextInputEditText
         Productexpdate = findViewById(R.id.expirydate) as TextInputEditText
@@ -127,10 +144,8 @@ class AddproductActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     override fun onClick(v: View) {
         when (v.id) {
 
-            R.id.addproduct -> postDataToSQLite()
-
             R.id.addproduct -> {
-
+                postDataToSQLite()
                 val intentRegister = Intent(applicationContext, HomeActivity::class.java)
                 startActivity(intentRegister)
 
@@ -157,25 +172,24 @@ class AddproductActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             return
         }
 
-//        if (!databaseHelper!!.checkUser(Productname!!.text.toString().trim())) {
-//
-//            var product = Product(
-//                productname = Productname!!.text.toString().trim(),
-//                expirydate = Productexpdate!!.text.toString().trim(),
-//
-//
-//
-//            )
-//
-//            databaseHelper!!.addProduct(product)
-//
-//        }
+
+
+            var selectedRadioButton= findViewById<RadioButton>(ProductradioGroup!!.checkedRadioButtonId)
+
+            var product = Product(
+                productname = Productname!!.text.toString().trim(),
+                expirydate = Productexpdate!!.text.toString().trim(),
+                category = spinner!!.selectedItem.toString(),
+                reminder = selectedRadioButton.text.toString()
+            )
+
+            databaseHelper!!.addProduct(product)
+
     }
 
     private fun emptyInputEditText() {
         Productname!!.text = null
         Productexpdate!!.text = null
-
     }
 
 }

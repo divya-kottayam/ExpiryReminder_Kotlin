@@ -64,5 +64,5 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }

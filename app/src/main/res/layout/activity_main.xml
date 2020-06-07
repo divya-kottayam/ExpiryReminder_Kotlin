@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"/>
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -26,6 +26,8 @@
     <string name="text_title">Android Tutorials Hub</string>
     <string name="error_message_productname">ProductName</string>
     <string name="error_message_expdate">ExpiryDate</string>
+    <string name="hint">Product name</string>
+    <string name="hintdate">Expiry date</string>
 
 
     <string-array name="Category_array">
